@@ -3,13 +3,13 @@ const express = require('express');
 const methodOverride = require('method-override');
 const bodyParser = require('body-parser');
 const app = express();
+const PORT = process.env.PORT || 3000;
+
 
 //serve up public folder and all content as static files to server.
 app.use(express.static('public'));
 //use bodyParser, do not encode url
-app.use(bodyParser.urlencoded({
-	extended: false
-}));
+app.use(bodyParser.urlencoded({extended: false}));
 // override with POST having ?_method=DELETE
 app.use(methodOverride('_method'));
 //require handlebars
@@ -24,4 +24,6 @@ app.set('view engine', 'handlebars');
 var routes = require('./controllers/burgers_controller.js');
 app.use('/', routes);
 //listen on port, if undefined, use 3000
-app.listen(process.env.PORT || 3000);
+app.listen(PORT, function () {
+    console.log('App listening on PORT ' + PORT);
+});
