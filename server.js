@@ -3,8 +3,6 @@ const express = require('express');
 const methodOverride = require('method-override');
 const bodyParser = require('body-parser');
 const app = express();
-const PORT = process.env.PORT || 3000;
-
 
 //serve up public folder and all content as static files to server.
 app.use(express.static('public'));
@@ -24,6 +22,4 @@ app.set('view engine', 'handlebars');
 var routes = require('./controllers/burgers_controller.js');
 app.use('/', routes);
 //listen on port, if undefined, use 3000
-app.listen(PORT, function () {
-    console.log('App listening on PORT ' + PORT);
-});
+app.listen(process.env.PORT || 3000);
