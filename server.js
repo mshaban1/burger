@@ -4,6 +4,7 @@ const methodOverride = require('method-override');
 const bodyParser = require('body-parser');
 const app = express();
 
+//const connection = require('./config/connection.js');
 //serve up public folder and all content as static files to server.
 app.use(express.static('public'));
 //use bodyParser, do not encode url
