@@ -5,6 +5,8 @@ var orm = {
         var queryString = 'SELECT * FROM ' + tableInput + ' WHERE ' + colToSearch + ' = ?';
 
         connection.query(queryString, [valOfCol], function(err, result) {
+			connection.release();
+
             return result;
         });
     },
@@ -13,6 +15,8 @@ var orm = {
 		
 		connection.query(queryString, function (err, result) {
 			if (err) throw err;
+			connection.release();
+
 			cb(result);
 		});
 	},
@@ -23,6 +27,8 @@ var orm = {
 		connection.query(queryString, vals, function (err, result) {
 			if (err) throw err;
 			cb(result);
+			connection.release();
+
 		});
 	},
     updateOne: function(table, col_name, burger_id, cb) {
@@ -32,6 +38,8 @@ var orm = {
 		connection.query(queryString, function(err, result) {
 			if (err) throw err;
 			cb(result);
+			connection.release();
+
 		})
 	},
 	deleteOne: function(table, burger_id, cb) {
@@ -41,6 +49,8 @@ var orm = {
 		connection.query(queryString, function(err, result) {
 			if (err) throw err;
 			cb(result);
+			connection.release();
+
 		})
 	}
 };
