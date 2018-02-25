@@ -1,20 +1,21 @@
 var mysql = require('mysql');
 //connection details. Modified for online usage.
 var connection = mysql.createConnection({
-    //port: 3306,
-    connectionLimit : 10000,
-    host: 'us-cdbr-iron-east-05.cleardb.net',
-    user: 'bf1652bd2165cc',
-    password: 'c5c3836b',
-    database: 'heroku_2fa4d53d7869546'
-});
-// var connection = mysql.createConnection({
-// 	   port: 3306,
-//     host: 'alv4v3hlsipxnujn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
-//     user: 'bugt84jn8ee8tgts',
-//     password: 'b2tvmge4zbq1lwmf',
-//     database: 'nki4myabllep52sj'
+//     //port: 3306,
+//     connectionLimit : 10000,
+//     host: 'us-cdbr-iron-east-05.cleardb.net',
+//     user: 'bf1652bd2165cc',
+//     password: 'c5c3836b',
+//     database: 'heroku_2fa4d53d7869546'
 // });
+
+var connection = mysql.createConnection({
+	//port: 3306,
+    host: process.env.'alv4v3hlsipxnujn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+    user: process.env.'bugt84jn8ee8tgts',
+    password: process.env.'b2tvmge4zbq1lwmf',
+    database: process.env.'nki4myabllep52sj'
+});
 
 connection.connect(function(err) {
     if (err) {
