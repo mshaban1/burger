@@ -14,9 +14,7 @@ app.use(methodOverride('_method'));
 //require handlebars
 var exphbs = require('express-handlebars');
 //use handlebars engine as template engine, use 'main' as our base file
-app.engine('handlebars', exphbs({
-	defaultLayout: 'main'
-}));
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 //link to burger controller, set as default page"/"

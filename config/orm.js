@@ -1,17 +1,17 @@
-var connection = require('../config/connection.js');
+var pool = require('../config/connection.js');
 
 var orm = {
     selectWhere: function(tableInput, colToSearch, valOfCol) {
         var queryString = 'SELECT * FROM ' + tableInput + ' WHERE ' + colToSearch + ' = ?';
 
-        connection.query(queryString, [valOfCol], function(err, result) {
+        pool.query(queryString, [valOfCol], function(err, result) {
             return result;
         });
     },
     selectAll: function (tableInput, cb) {
 		var queryString = 'SELECT * FROM ' + tableInput + ';';
 		
-		connection.query(queryString, function (err, result) {
+		pool.query(queryString, function (err, result) {
 			if (err) throw err;
 			cb(result);
 		});
@@ -20,7 +20,7 @@ var orm = {
 		var queryString = 'INSERT INTO ' + table + '(' + cols + ')' + "VALUES('" + [vals] + "')";
 		console.log(queryString);
 
-		connection.query(queryString, vals, function (err, result) {
+		pool.query(queryString, vals, function (err, result) {
 			if (err) throw err;
 			cb(result);
 		});
@@ -29,7 +29,7 @@ var orm = {
     	var queryString = "UPDATE " + table + " SET " + col_name + "=1 " + "WHERE id=" + burger_id;
     	console.log(queryString);
 
-		connection.query(queryString, function(err, result) {
+		pool.query(queryString, function(err, result) {
 			if (err) throw err;
 			cb(result);
 		})
@@ -38,7 +38,7 @@ var orm = {
     	var queryString = "DELETE FROM " + table + " WHERE id = " + burger_id;
     	console.log(queryString);
 
-		connection.query(queryString, function(err, result) {
+		pool.query(queryString, function(err, result) {
 			if (err) throw err;
 			cb(result);
 		})
